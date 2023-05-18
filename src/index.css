@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.my-container{
+ @apply w-[90%] lg:w-[85%] mx-auto
+}
+
+.btn-primary{
+    transition: all ease .4s;
+    @apply bg-[#FC7800] px-7 py-1 text-xl rounded-sm border border-transparent hover:bg-transparent hover:border-[#FC7800]
+}
+
