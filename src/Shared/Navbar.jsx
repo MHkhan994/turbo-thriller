@@ -26,7 +26,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="flex gap-4 px-2 text-lg space-x-2">
-                        <li><NavLink className={(isActive) => isActive ? 'active' : ''} to='/'>Home</NavLink></li>
+                        <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/allToys'>All Toys</NavLink></li>
                         <li><NavLink to='/myToys'>My Toys</NavLink></li>
                         <li><NavLink to='/addToy'>Add a Toy</NavLink></li>
@@ -34,9 +34,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className='btn-primary'>
-                        <NavLink to='/login'>Login</NavLink>
-                    </button>
+                    <Link className='my-btn-primary' to='/login'>Login</Link>
                 </div>
             </div>
         </div>
