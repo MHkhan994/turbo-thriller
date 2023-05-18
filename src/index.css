@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+body{
+    scroll-behavior: smooth;
+}
+
 .my-container{
  @apply w-[95%] lg:w-[85%] mx-auto
 }

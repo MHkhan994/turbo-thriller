@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
 import { updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2'
 
 const Register = () => {
 
-    const { signUp } = useContext(AuthContext)
+    const { signUp, googleSignIn } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleSignUp = e => {
         e.preventDefault()
@@ -14,14 +16,32 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const photo = form.photo.value
 
         signUp(email, password)
             .then(result => {
                 console.log(result.user);
                 updateProfile(result.user, {
-                    displayName: name
+                    displayName: name, photoURL: photo
+                })
+                Swal.fire({
+                    position: 'top-middle',
+                    icon: 'success',
+                    title: 'Account created successfully',
+                    showConfirmButton: false,
+                    timer: 1500
                 })
                 form.reset()
+                navigate("/login")
+            })
+            .catch(error => console.log(error))
+    }
+
+    const handleGooleLogin = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result.user);
+                navigate("/")
             })
             .catch(error => console.log(error))
     }
@@ -61,7 +81,7 @@ const Register = () => {
                             </div>
                         </form>
                         <div className='px-6 pb-10'>
-                            <button className='text-xl gap-2 flex justify-center items-center text-white bg-blue-600 rounded-md h-12 w-full'>
+                            <button onClick={handleGooleLogin} className='text-xl gap-2 flex justify-center items-center text-white bg-blue-600 rounded-md h-12 w-full'>
                                 <span>Sign Up with </span><FaGoogle />
                             </button>
                             <p className='text-center pt-3 text-xl'>Already have an Account? <Link className='text-blue-500' to='/login'>Login</Link></p>
