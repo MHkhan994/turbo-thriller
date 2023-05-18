@@ -12,3 +12,7 @@
     @apply bg-[#FC7800] lg:px-7 px-4 py-2 text-xl rounded-sm border border-transparent hover:bg-transparent hover:border-[#FC7800]
 }
 
+.active{
+    @apply text-[#FF912E]
+}
+
