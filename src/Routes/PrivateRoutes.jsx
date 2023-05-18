@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const PrivateRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
+    const loaction = useLocation()
 
     if (loading) {
         return (
@@ -16,10 +17,12 @@ const PrivateRoutes = ({ children }) => {
     else if (user) {
         return children
     }
-    Swal.fire('Please login to see myToys')
-    return (
-        < Navigate to='/login' ></ Navigate>
-    )
+    else {
+        Swal.fire('Please login to visit this Page')
+        return (
+            < Navigate to='/login' state={{ from: loaction }}></ Navigate>
+        )
+    }
 };
 
 export default PrivateRoutes;

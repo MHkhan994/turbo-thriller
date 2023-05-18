@@ -4,7 +4,6 @@ import 'react-tabs/style/react-tabs.css';
 import ToyCard from '../Toys/ToyCard';
 
 const DataTabs = ({ toys }) => {
-    console.log(toys);
 
     const makeToyCards = (subCat) => {
         return (
@@ -17,13 +16,13 @@ const DataTabs = ({ toys }) => {
     }
 
     return (
-        <Tabs className='my-container mx-auto my-16 border rounded-md px-6 pb-6'>
-            <TabList>
+        <Tabs className='shadow-lg my-container mx-auto my-16 border rounded-md px-6 pb-6 pt-3 text-center font-semibold'>
+            < TabList >
                 {/* main catagories */}
-                <Tab>Car Cruisers</Tab>
+                <Tab> Car Cruisers</Tab >
                 <Tab>Zooming Cars</Tab>
                 <Tab>Race Track Fun</Tab>
-            </TabList>
+            </TabList >
             <TabPanel>
                 <Tabs>
                     {/* subcatgories of catagory 1 */}
@@ -85,7 +84,7 @@ const DataTabs = ({ toys }) => {
                     </TabPanel>
                 </Tabs>
             </TabPanel>
-        </Tabs>
+        </Tabs >
     );
 };
 

@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
     const { googleSignIn } = useContext(AuthContext)
     const navigate = useNavigate()
+    const loaction = useLocation()
+
+    const from = loaction.state?.from.pathname || '/'
 
     const handleGooleLogin = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user)
-                navigate("/")
+                navigate(from)
             })
             .catch(error => console.log(error))
     }
