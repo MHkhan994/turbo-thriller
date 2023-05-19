@@ -5,6 +5,7 @@ import { Link, json } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
+import { Helmet } from 'react-helmet';
 
 const MyToys = () => {
 
@@ -56,6 +57,9 @@ const MyToys = () => {
 
     return (
         <div className='min-h-[90vh] my-container py-16'>
+            <Helmet>
+                <title>Turbo Thriller- My Toys</title>
+            </Helmet>
             <h2 className='text-center text-4xl font-semibold pb-6 '>My Toys</h2>
             {
                 toys.length == 0 && <div className='flex h-[40vh] justify-center items-center text-2xl text-gray-400'>

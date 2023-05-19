@@ -3,6 +3,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
+import { Helmet } from 'react-helmet';
 
 const AddToy = () => {
 
@@ -72,6 +73,9 @@ const AddToy = () => {
 
     return (
         <div className='min-h-screen my-container' data-aos='fade-down' data-aos-duration='800'>
+            <Helmet>
+                <title>Turbo Thriller - Add a Toy </title>
+            </Helmet>
             <form onSubmit={handleAddToy} className="w-full p-6 pt-10 rounded-lg">
                 <div className=' grid lg:grid-cols-2 gap-3'>
                     <div className="form-control">

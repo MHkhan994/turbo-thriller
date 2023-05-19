@@ -4,6 +4,7 @@ import DataTabs from '../DataTabs/DataTabs';
 import { useLoaderData } from 'react-router-dom';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
+import { Helmet } from 'react-helmet';
 
 
 const Home = () => {
@@ -14,6 +15,9 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Turbo Thriller - Homepage </title>
+            </Helmet>
             <Banner></Banner>
             <DataTabs toys={toys}></DataTabs>
         </div>

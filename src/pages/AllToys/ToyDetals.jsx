@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { useLoaderData } from 'react-router-dom';
 
 const ToyDetals = () => {
@@ -8,6 +9,9 @@ const ToyDetals = () => {
 
     return (
         <div className='my-container py-16'>
+            <Helmet>
+                <title>Turbo Thriller - {toy.name} </title>
+            </Helmet>
             <div className='grid lg:grid-cols-2 gap-4'>
                 <img src={picture} alt="" />
                 <div>

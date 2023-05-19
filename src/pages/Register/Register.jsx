@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2'
 import Aos from 'aos';
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
 
@@ -53,6 +54,9 @@ const Register = () => {
 
     return (
         <div >
+            <Helmet>
+                <title>Turbo Thriller - Register </title>
+            </Helmet>
             <div className="hero min-h-screen my-container">
                 <div className="grid lg:grid-cols-2 my-20 items-center gap-5 w-full">
                     <div data-aos='zoom-in' className="card w-full bg-base-100 border">

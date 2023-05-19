@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { json, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -50,6 +51,9 @@ const UpdateToy = () => {
 
     return (
         <div className='my-container py-16'>
+            <Helmet>
+                <title>Turbo Thriller-Update - {toy.name} </title>
+            </Helmet>
             <h1 className='text-4xl font-semibold text-center'>Update Toy</h1>
             <form onSubmit={handleUpdateToy} className="w-full p-6 rounded-lg">
                 <div className=' grid lg:grid-cols-2 gap-3'>

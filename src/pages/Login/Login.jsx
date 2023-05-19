@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
@@ -57,6 +58,9 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Turbo Thriller - Login </title>
+            </Helmet>
             <div className="hero min-h-screen my-container">
                 <div className="grid lg:grid-cols-2 my-20 items-center gap-5 w-full">
                     <div data-aos-duration="1000" data-aos='fade-left' className="text-center lg:text-left order-2 lg:order-1">

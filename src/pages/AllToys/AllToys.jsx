@@ -1,6 +1,7 @@
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useLoaderData } from 'react-router-dom';
 import SyncLoader from "react-spinners/SyncLoader";
 
@@ -50,6 +51,9 @@ const AllToys = () => {
 
     return (
         <div className='min-h-screen my-container'>
+            <Helmet>
+                <title>Turbo Thriller- All Toys</title>
+            </Helmet>
             <div className="overflow-x-auto w-full pt-16 pb-8">
                 <table data-aos="fade-down"
                     data-aos-duration='700'
