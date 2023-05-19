@@ -20,7 +20,7 @@ const AddToy = () => {
         const seller_name = user?.displayName;
         const rating = (Math.random() + 4).toFixed(1);
 
-        if (quantity < 0) {
+        if (quantity < 0 || price < 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -83,7 +83,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input required name='price' type="text" placeholder="Toy price" className="input input-bordered" />
+                        <input required name='price' type="number" placeholder="Toy price" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">

@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
-    const { googleSignIn } = useContext(AuthContext)
+    const { googleSignIn, logIn } = useContext(AuthContext)
     const navigate = useNavigate()
     const loaction = useLocation()
 
@@ -13,7 +14,34 @@ const Login = () => {
     const handleGooleLogin = () => {
         googleSignIn()
             .then(result => {
-                console.log(result.user)
+                Swal.fire({
+                    position: 'top-middle',
+                    icon: 'success',
+                    title: `welcome ${result.user.displayName}`,
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                navigate(from)
+            })
+            .catch(error => console.log(error))
+    }
+
+
+    const handleLogIn = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        logIn(email, password)
+            .then(result => {
+                Swal.fire({
+                    position: 'top-middle',
+                    icon: 'success',
+                    title: `welcome ${result.user.displayName}`,
+                    showConfirmButton: false,
+                    timer: 2500
+                })
                 navigate(from)
             })
             .catch(error => console.log(error))
@@ -28,7 +56,7 @@ const Login = () => {
                         <img className='rounded-lg' src="login.jpg" alt="" />
                     </div>
                     <div className="card w-full bg-base-100 border">
-                        <form className="w-full p-6 pt-10  rounded-lg">
+                        <form onSubmit={handleLogIn} className="w-full p-6 pt-10  rounded-lg">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
