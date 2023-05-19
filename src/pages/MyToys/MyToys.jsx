@@ -63,17 +63,21 @@ const MyToys = () => {
                         <div className="card bg-base-100 shadow-xl border h-full">
                             <figure><img src={toy.picture} onError={(e) => { e.target.src = "altImg.jpg"; }}></img></figure>
                             <div className="card-body">
-                                <h2 className="text-2xl font-semibold">{toy.name}</h2>
+                                <h2 className="text-3xl font-semibold">{toy.name}</h2>
                                 <h3 className='text-xl'>{toy.subcategory}</h3>
                                 <hr />
-                                <div>
+                                <div className='space-y-2'>
                                     <p><span className='font-semibold text-lg'>Price:</span> {toy.price}</p>
+                                    <hr />
                                     <p><span className='font-semibold text-lg'>Available:</span> {toy.quantity}</p>
+                                    <hr />
                                     <p><span className='font-semibold text-lg'>Rating:</span> {toy.rating}</p>
+                                    <hr />
                                     <p><span className='font-semibold text-lg'>Description:</span> {toy.description}</p>
+                                    <hr />
                                 </div>
-                                <div className='flex justify-end gap-2 text-lg'>
-                                    <Link className='px-2 text-white bg-blue-600 rounded-sm' to={`/updateToy/${toy._id}`}>Update</Link>
+                                <div className='flex justify-end gap-2 text-xl pt-2'>
+                                    <Link className='px-3 text-white bg-orange-600 rounded-sm' to={`/updateToy/${toy._id}`}>Update</Link>
                                     <button onClick={() => handleDeleteToy(toy._id)} className='px-2 text-white bg-red-600 rounded-sm'>
                                         <HiTrash />
                                     </button>
