@@ -7,7 +7,7 @@ const ToyDetals = () => {
     console.log(toy);
 
     return (
-        <div className='min-h-screen my-container py-16'>
+        <div className='my-container py-16'>
             <div className='grid lg:grid-cols-2 gap-4'>
                 <img src={picture} alt="" />
                 <div>
@@ -20,6 +20,7 @@ const ToyDetals = () => {
                         <p><span className='font-semibold text-black'>Rating: </span> {rating}</p>
                     </div>
                     <p className='text-lg italic pt-4'><span className='font-semibold'>Description:</span> {description}</p>
+                    <button className='my-btn-primary mt-4'>Buy</button>
                 </div>
             </div>
         </div>

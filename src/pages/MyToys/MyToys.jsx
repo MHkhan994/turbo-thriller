@@ -3,11 +3,17 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { HiTrash } from "react-icons/hi2";
 import { Link, json } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 
 const MyToys = () => {
 
+    useEffect(() => {
+        Aos.init()
+    }, [])
+
     const [toys, setToys] = useState([])
-    const { user } = useContext(AuthContext)
+    const { user, loading } = useContext(AuthContext)
 
     useEffect(() => {
         fetch(`http://localhost:5000/myToys/${user.email}`)
@@ -50,14 +56,14 @@ const MyToys = () => {
 
     return (
         <div className='min-h-[90vh] my-container py-16'>
-
             <h2 className='text-center text-4xl font-semibold pb-6 '>My Toys</h2>
             {
-                toys.length === 0 && <div className='flex h-[40vh] justify-center items-center text-2xl text-gray-400'>
+                toys.length == 0 && <div className='flex h-[40vh] justify-center items-center text-2xl text-gray-400'>
                     <h2>You currently have no toys.Add some <Link className='text-blue-400' to='/addToy'>Toys.</Link></h2>
                 </div>
             }
-            <div className='grid lg:grid-cols-3 gap-4'>
+            <div data-aos="fade-up"
+                data-aos-duration='1000' className='grid lg:grid-cols-3 gap-4'>
                 {
                     toys.map(toy => <div key={toy._id}>
                         <div className="card bg-base-100 shadow-xl border h-full">

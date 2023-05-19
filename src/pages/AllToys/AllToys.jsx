@@ -1,35 +1,59 @@
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import SyncLoader from "react-spinners/SyncLoader";
+
 
 const AllToys = () => {
+
+    useEffect(() => {
+        Aos.init()
+    }, [])
+
     const [toys, setToys] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
+    const [loading, setLoading] = useState(true)
     const loadedToys = useLoaderData()
     const totalToys = loadedToys.totalToys;
     const totalPages = Math.ceil(totalToys / 20);
 
-    let pages = []
 
+    let pages = []
     for (let i = 1; i <= totalPages; i++) {
         pages.push(i)
     }
 
-    const query = {
-        page: currentPage
-    }
 
     useEffect(() => {
         fetch(`http://localhost:5000/toyLimit?page=${currentPage}`)
             .then(res => res.json())
             .then(data => {
                 setToys(data)
+                setLoading(false)
             })
     }, [currentPage])
+
+    if (loading) {
+        return (
+            <div className='h-[80vh] flex justify-center items-center'>
+                <SyncLoader
+                    color={'#004485'}
+                    loading={loading}
+                    size={10}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+        )
+    }
 
     return (
         <div className='min-h-screen my-container'>
             <div className="overflow-x-auto w-full pt-16 pb-8">
-                <table className="table w-full">
+                <table data-aos="fade-down"
+                    data-aos-duration='700'
+                    className="table w-full">
                     {/* head */}
                     <thead>
                         <tr>
@@ -88,5 +112,6 @@ const AllToys = () => {
         </div >
     );
 };
+
 
 export default AllToys;

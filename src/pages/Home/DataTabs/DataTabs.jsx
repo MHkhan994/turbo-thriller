@@ -16,7 +16,7 @@ const DataTabs = ({ toys }) => {
     }
 
     return (
-        <Tabs className='shadow-lg my-container mx-auto my-16 border rounded-md px-6 pb-6 pt-3 text-center font-semibold'>
+        <Tabs data-aos='fade-up' data-aos-duration="1000" className='shadow-lg my-container mx-auto my-16 border rounded-md px-6 pb-6 pt-3 text-center font-semibold'>
             < TabList >
                 {/* main catagories */}
                 <Tab> Car Cruisers</Tab >

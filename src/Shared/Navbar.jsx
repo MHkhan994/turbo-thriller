@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Providers/AuthProvider';
+import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -56,7 +57,12 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ? <div className='flex gap-3 items-center'>
-                            <img className='w-10 h-10 rounded-full' src={user.photoURL} alt="" />
+                            <a className='my-anchor-element cursor-pointer'>
+                                <Tooltip anchorSelect=".my-anchor-element" place="top">
+                                    {user.displayName}
+                                </Tooltip>
+                                <img className='w-10 h-10 rounded-full' onError={(e) => { e.target.src = 'profile.jpg' }} src={user.photoURL} alt="" />
+                            </a>
                             <button onClick={handleLogout} className='my-btn-primary'>Logout</button>
                         </div> :
                             <Link className='my-btn-primary' to='/login'>Login</Link>

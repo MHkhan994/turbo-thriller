@@ -1,11 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2'
+import Aos from 'aos';
 
 const Register = () => {
+
+    useEffect(() => {
+        Aos.init({ duration: 600 })
+    }, [])
 
     const { signUp, googleSignIn } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -50,7 +55,7 @@ const Register = () => {
         <div >
             <div className="hero min-h-screen my-container">
                 <div className="grid lg:grid-cols-2 my-20 items-center gap-5 w-full">
-                    <div className="card w-full bg-base-100 border">
+                    <div data-aos='zoom-in' className="card w-full bg-base-100 border">
                         <form onSubmit={handleSignUp} className="w-full p-6 pt-10  rounded-lg">
                             <div className="form-control">
                                 <label className="label">
@@ -87,7 +92,7 @@ const Register = () => {
                             <p className='text-center pt-3 text-xl'>Already have an Account? <Link className='text-blue-500' to='/login'>Login</Link></p>
                         </div>
                     </div>
-                    <div className="text-center lg:text-left h-full">
+                    <div data-aos='fade-left' className="text-center lg:text-left h-full">
                         <img className='rounded-lg h-full' src="signup.jpg" alt="" />
                     </div>
                 </div>

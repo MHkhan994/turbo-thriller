@@ -1,8 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 
 const AddToy = () => {
+
+    useEffect(() => {
+        Aos.init()
+    }, [])
 
     const { user } = useContext(AuthContext)
 
@@ -65,7 +71,7 @@ const AddToy = () => {
     }
 
     return (
-        <div className='min-h-screen my-container'>
+        <div className='min-h-screen my-container' data-aos='fade-down' data-aos-duration='800'>
             <form onSubmit={handleAddToy} className="w-full p-6 pt-10 rounded-lg">
                 <div className=' grid lg:grid-cols-2 gap-3'>
                     <div className="form-control">

@@ -1,10 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 
 const Login = () => {
+
+    useEffect(() => {
+        Aos.init()
+    }, [])
+
     const { googleSignIn, logIn } = useContext(AuthContext)
     const navigate = useNavigate()
     const loaction = useLocation()
@@ -52,10 +59,10 @@ const Login = () => {
         <div>
             <div className="hero min-h-screen my-container">
                 <div className="grid lg:grid-cols-2 my-20 items-center gap-5 w-full">
-                    <div className="text-center lg:text-left order-2">
+                    <div data-aos-duration="1000" data-aos='fade-left' className="text-center lg:text-left order-2 lg:order-1">
                         <img className='rounded-lg' src="login.jpg" alt="" />
                     </div>
-                    <div className="card w-full bg-base-100 border">
+                    <div data-aos='fade-right' data-aos-duration="700" className="card w-full bg-base-100 border">
                         <form onSubmit={handleLogIn} className="w-full p-6 pt-10  rounded-lg">
                             <div className="form-control">
                                 <label className="label">
