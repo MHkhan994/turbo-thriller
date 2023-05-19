@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../Providers/AuthProvider';
+import React, { useEffect, useState } from 'react';
+import { json, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const AddToy = () => {
+const UpdateToy = () => {
 
-    const { user } = useContext(AuthContext)
+    const toy = useLoaderData()
+    const navigate = useNavigate()
 
-    const handleAddToy = e => {
+    const handleUpdateToy = e => {
         e.preventDefault()
         const form = e.target;
         const name = form.name.value;
@@ -16,87 +17,71 @@ const AddToy = () => {
         const subcategory = form.category.value;
         const description = form.description.value;
 
-        const seller_email = user.email;
-        const seller_name = user?.displayName;
-        const rating = (Math.random() + 4).toFixed(1);
-
-        if (quantity < 0 || price < 0) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "quantity can't be negative",
-            })
-            return
+        const updateToy = {
+            name: name || toy.name,
+            picture: picture || toy.picture,
+            price: price ? `$${price}` : toy.price,
+            quantity: quantity || toy.quantity,
+            subcategory: subcategory || toy.subcategory,
+            description: description || toy.description
         }
 
-        const toy = {
-            picture,
-            name,
-            price: `$${price}`,
-            rating,
-            category: '',
-            subcategory,
-            quantity,
-            seller_name,
-            seller_email,
-            description
-        }
-
-        fetch('http://localhost:5000/toys', {
-            method: "POST",
+        fetch(`http://localhost:5000/myToys/${toy._id}`, {
+            method: "PATCH",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(toy)
+            body: JSON.stringify(updateToy)
         })
             .then(res => res.json())
             .then(data => {
-                if (data.insertedId) {
+                if (data.matchedCount > 0 && data.acknowledged == true) {
                     Swal.fire({
                         position: 'top-middle',
                         icon: 'success',
-                        title: 'Toy added successfully',
+                        title: 'Toy updated successfully',
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    form.reset()
+                    navigate('/mytoys')
                 }
             })
     }
 
     return (
-        <div className='min-h-screen my-container'>
-            <form onSubmit={handleAddToy} className="w-full p-6 pt-10 rounded-lg">
+        <div className='my-container py-16'>
+            <h1 className='text-4xl font-semibold text-center'>Update Toy</h1>
+            <form onSubmit={handleUpdateToy} className="w-full p-6 rounded-lg">
                 <div className=' grid lg:grid-cols-2 gap-3'>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input required name='name' type="text" placeholder="Toy Name" className="input input-bordered" />
+                        <input name='name' type="text" placeholder={toy.name} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Picture</span>
                         </label>
-                        <input required name='picture' type="text" placeholder="Toy Photo" className="input input-bordered" />
+                        <input name='picture' type="text" placeholder={toy.picture} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input required name='price' type="number" placeholder="Toy price" className="input input-bordered" />
+                        <input name='price' type="number" placeholder={toy.price} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Quantity</span>
                         </label>
-                        <input required name='quantity' type="number" placeholder="Available quantity" className="input input-bordered" />
+                        <input name='quantity' type="number" placeholder={toy.quantity} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Sub-category</span>
                         </label>
-                        <select required name='category' className='input input-bordered'>
+                        <select name='category' className='input input-bordered' placeholder={toy.subcategory}>
                             <option value="Multi-Lane Races">Multi-Lane Races</option>
                             <option value="Loop Track Adventures">Loop Track Adventures</option>
                             <option value="Pull-Back Cars">Pull-Back Cars</option>
@@ -120,4 +105,4 @@ const AddToy = () => {
     );
 };
 
-export default AddToy;
+export default UpdateToy;

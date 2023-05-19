@@ -26,8 +26,12 @@ const Navbar = () => {
                         <ul tabIndex={0} className="mt-6 text-black menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
                             <li><NavLink to='/'>Home</NavLink></li>
                             <li><NavLink to='/allToys'>All Toys</NavLink></li>
-                            <li><NavLink to='/myToys'>My Toys</NavLink></li>
-                            <li><NavLink to='/addToy'>Add a Toy</NavLink></li>
+                            {
+                                user && <>
+                                    <li><NavLink to='/myToys'>My Toys</NavLink></li>
+                                    <li><NavLink to='/addToy'>Add a Toy</NavLink></li>
+                                </>
+                            }
                             <li><NavLink to='/blogs'>Blogs</NavLink></li>
                         </ul>
                     </div>
@@ -40,8 +44,12 @@ const Navbar = () => {
                     <ul className="flex gap-4 px-2 text-lg space-x-2">
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/allToys'>All Toys</NavLink></li>
-                        <li><NavLink to='/myToys'>My Toys</NavLink></li>
-                        <li><NavLink to='/addToy'>Add a Toy</NavLink></li>
+                        {
+                            user && <>
+                                <li><NavLink to='/myToys'>My Toys</NavLink></li>
+                                <li><NavLink to='/addToy'>Add a Toy</NavLink></li>
+                            </>
+                        }
                         <li><NavLink to='/blogs'>Blogs</NavLink></li>
                     </ul>
                 </div>
