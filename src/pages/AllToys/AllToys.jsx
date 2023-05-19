@@ -2,22 +2,21 @@ import Aos from 'aos';
 import 'aos/dist/aos.css'
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import SyncLoader from "react-spinners/SyncLoader";
 
 
 const AllToys = () => {
-
-    useEffect(() => {
-        Aos.init()
-    }, [])
-
     const [toys, setToys] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [loading, setLoading] = useState(true)
     const loadedToys = useLoaderData()
     const totalToys = loadedToys.totalToys;
     const totalPages = Math.ceil(totalToys / 20);
+
+    useEffect(() => {
+        Aos.init()
+    }, [])
 
 
     let pages = []
@@ -34,6 +33,17 @@ const AllToys = () => {
                 setLoading(false)
             })
     }, [currentPage])
+
+    const searchToy = e => {
+        e.preventDefault()
+        console.log(e.target);
+        fetch(`http://localhost:5000/toyName?name=${e.target.toyName.value}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setToys(data)
+            })
+    }
 
     if (loading) {
         return (
@@ -54,7 +64,11 @@ const AllToys = () => {
             <Helmet>
                 <title>Turbo Thriller- All Toys</title>
             </Helmet>
-            <div className="overflow-x-auto w-full pt-16 pb-8">
+            <form onSubmit={searchToy} className='flex pt-5 gap-2'>
+                <input required className='input input-bordered' placeholder='toy name' type="text" name="toyName" />
+                <button className='my-btn-primary'>Search</button>
+            </form>
+            <div className="overflow-x-auto w-full pt-10 pb-8">
                 <table data-aos="fade-down"
                     data-aos-duration='700'
                     className="table w-full">

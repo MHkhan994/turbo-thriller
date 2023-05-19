@@ -4,14 +4,16 @@ import Swal from 'sweetalert2';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 
 const AddToy = () => {
+    const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         Aos.init()
     }, [])
 
-    const { user } = useContext(AuthContext)
 
     const handleAddToy = e => {
         e.preventDefault()
@@ -24,8 +26,16 @@ const AddToy = () => {
         const description = form.description.value;
 
         const seller_email = user.email;
-        const seller_name = user?.displayName;
-        const rating = (Math.random() + 4).toFixed(1);
+        const seller_name = form.sellerName.value || user.displayName;
+        const rating = form.rating.value || (Math.random() + 4).toFixed(1);
+        if (parseInt(rating) < 0 || parseInt(rating) > 5) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Rating should be between 4-5",
+            })
+            return
+        }
 
         if (quantity < 0 || price < 0) {
             Swal.fire({
@@ -67,6 +77,7 @@ const AddToy = () => {
                         timer: 1500
                     })
                     form.reset()
+                    navigate('/myToys')
                 }
             })
     }
@@ -92,6 +103,18 @@ const AddToy = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
+                            <span className="label-text">Seller Name</span>
+                        </label>
+                        <input name='sellerName' type="text" defaultValue={user.displayName} className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Seller Email</span>
+                        </label>
+                        <input readOnly value={user.email} name='sellerEmail' type="text" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
                             <span className="label-text">Price</span>
                         </label>
                         <input required name='price' type="number" placeholder="Toy price" className="input input-bordered" />
@@ -101,6 +124,12 @@ const AddToy = () => {
                             <span className="label-text">Quantity</span>
                         </label>
                         <input required name='quantity' type="number" placeholder="Available quantity" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Rating</span>
+                        </label>
+                        <input name='rating' type="text" placeholder="Rating" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">

@@ -8,6 +8,7 @@ const UpdateToy = () => {
     const toy = useLoaderData()
     const navigate = useNavigate()
 
+
     const handleUpdateToy = e => {
         e.preventDefault()
         const form = e.target;
@@ -61,31 +62,31 @@ const UpdateToy = () => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input name='name' type="text" placeholder={toy.name} className="input input-bordered" />
+                        <input name='name' type="text" defaultValue={toy.name} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Picture</span>
                         </label>
-                        <input name='picture' type="text" placeholder={toy.picture} className="input input-bordered" />
+                        <input name='picture' type="text" defaultValue={toy.picture} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input name='price' type="number" placeholder={toy.price} className="input input-bordered" />
+                        <input name='price' type="number" defaultValue={parseInt(toy.price.split('$')[1])} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Quantity</span>
                         </label>
-                        <input name='quantity' type="number" placeholder={toy.quantity} className="input input-bordered" />
+                        <input name='quantity' type="number" defaultValue={toy.quantity} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Sub-category</span>
                         </label>
-                        <select name='category' className='input input-bordered' placeholder={toy.subcategory}>
+                        <select name='category' className='input input-bordered' defaultValue={toy.subcategory}>
                             <option value="Multi-Lane Races">Multi-Lane Races</option>
                             <option value="Loop Track Adventures">Loop Track Adventures</option>
                             <option value="Pull-Back Cars">Pull-Back Cars</option>
@@ -98,7 +99,7 @@ const UpdateToy = () => {
                         <label className="label">
                             <span className="label-text">Toy Description</span>
                         </label>
-                        <textarea name='description' placeholder='give a short discription of your toy.' className='input input-bordered h-36 resize-none'></textarea>
+                        <textarea name='description' defaultValue={toy.description} className='input input-bordered h-36 resize-none'></textarea>
                     </div>
                 </div>
                 <div className="form-control mt-6">

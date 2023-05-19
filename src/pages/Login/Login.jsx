@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
@@ -9,15 +9,17 @@ import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
+    const { googleSignIn, logIn } = useContext(AuthContext)
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+    const loaction = useLocation()
+    const from = loaction.state?.from.pathname || '/'
+
+
     useEffect(() => {
         Aos.init()
     }, [])
 
-    const { googleSignIn, logIn } = useContext(AuthContext)
-    const navigate = useNavigate()
-    const loaction = useLocation()
-
-    const from = loaction.state?.from.pathname || '/'
 
     const handleGooleLogin = () => {
         googleSignIn()
@@ -37,6 +39,7 @@ const Login = () => {
 
     const handleLogIn = (e) => {
         e.preventDefault()
+        setError('')
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -52,7 +55,18 @@ const Login = () => {
                 })
                 navigate(from)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                if (error.message.includes('wrong-password')) {
+                    setError('wrong password')
+                }
+                else if (error.message.includes('user-not-found')) {
+                    setError('wrong email address')
+                }
+                else if (error.message.includes('too-many-requests')) {
+                    setError('too many tries. Please try again later')
+                }
+                console.log(error.message);
+            })
     }
 
 
@@ -80,6 +94,7 @@ const Login = () => {
                                 </label>
                                 <input required name='password' type="password" placeholder="password" className="input input-bordered" />
                             </div>
+                            <p className='text-red-600'>{error}</p>
                             <div className="form-control mt-6">
                                 <button className="my-btn-primary">Login</button>
                             </div>

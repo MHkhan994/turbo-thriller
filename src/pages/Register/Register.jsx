@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Providers/AuthProvider';
@@ -8,20 +8,27 @@ import Aos from 'aos';
 import { Helmet } from 'react-helmet';
 
 const Register = () => {
+    const { signUp, googleSignIn } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const [error, setError] = useState('')
 
     useEffect(() => {
         Aos.init({ duration: 600 })
     }, [])
 
-    const { signUp, googleSignIn } = useContext(AuthContext)
-    const navigate = useNavigate()
-
     const handleSignUp = e => {
         e.preventDefault()
+        setError('')
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+
+        if (!/^(?=.*[0-9])/.test(password)) {
+            setError('Password should contain at least on number')
+            return
+        }
+
         const photo = form.photo.value
 
         signUp(email, password)
@@ -78,6 +85,7 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input required name='password' type="password" placeholder="password" className="input input-bordered" />
+                                <p className='text-red-600'>{error}</p>
                             </div>
                             <div className="form-control">
                                 <label className="label">

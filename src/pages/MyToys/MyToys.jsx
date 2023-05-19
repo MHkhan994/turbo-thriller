@@ -61,18 +61,13 @@ const MyToys = () => {
                 <title>Turbo Thriller- My Toys</title>
             </Helmet>
             <h2 className='text-center text-4xl font-semibold pb-6 '>My Toys</h2>
-            {
-                toys.length == 0 && <div className='flex h-[40vh] justify-center items-center text-2xl text-gray-400'>
-                    <h2>You currently have no toys.Add some <Link className='text-blue-400' to='/addToy'>Toys.</Link></h2>
-                </div>
-            }
             <div data-aos="fade-up"
                 data-aos-duration='1000' className='grid lg:grid-cols-3 gap-4'>
                 {
                     toys.map(toy => <div key={toy._id}>
-                        <div className="card bg-base-100 shadow-xl border h-full">
+                        <div className="bg-base-100 shadow-xl border h-full">
                             <figure><img src={toy.picture} onError={(e) => { e.target.src = "altImg.jpg"; }}></img></figure>
-                            <div className="card-body">
+                            <div className="card-body p-4">
                                 <h2 className="text-3xl font-semibold">{toy.name}</h2>
                                 <h3 className='text-xl'>{toy.subcategory}</h3>
                                 <hr />
