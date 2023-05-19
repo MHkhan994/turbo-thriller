@@ -22,7 +22,6 @@ const AllToys = () => {
         fetch(`http://localhost:5000/toyLimit?page=${currentPage}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setToys(data)
             })
     }, [currentPage])
@@ -77,6 +76,7 @@ const AllToys = () => {
             <div className='flex gap-2 justify-center flex-wrap text-center bg-[#004485] shadow-lg border py-2 px-5 mx-auto w-fit mb-4 rounded-md min-w-[20%]'>
                 {
                     pages.map(p => <button
+                        key={p}
                         onClick={() => setCurrentPage(p)}
                         className={currentPage === p ? 'py-1 px-4 rounded-md bg-orange-500 shadow-md'
                             : 'py-1 px-4 rounded-md bg-gray-50 shadow-md'}
