@@ -56,41 +56,55 @@ const MyToys = () => {
     }
 
     return (
-        <div className='min-h-[90vh] my-container py-16'>
+        <div className='min-h-[90vh] my-container py-8 lg:py-16'>
             <Helmet>
                 <title>Turbo Thriller- My Toys</title>
             </Helmet>
             <h2 className='text-center text-4xl font-semibold pb-6 '>My Toys</h2>
-            <div data-aos="fade-up"
-                data-aos-duration='1000' className='grid lg:grid-cols-3 gap-4'>
-                {
-                    toys.map(toy => <div key={toy._id}>
-                        <div className="bg-base-100 shadow-xl border h-full">
-                            <figure><img src={toy.picture} onError={(e) => { e.target.src = "altImg.jpg"; }}></img></figure>
-                            <div className="card-body p-4">
-                                <h2 className="text-3xl font-semibold">{toy.name}</h2>
-                                <h3 className='text-xl'>{toy.subcategory}</h3>
-                                <hr />
-                                <div className='space-y-2'>
-                                    <p><span className='font-semibold text-lg'>Price:</span> {toy.price}</p>
-                                    <hr />
-                                    <p><span className='font-semibold text-lg'>Available:</span> {toy.quantity}</p>
-                                    <hr />
-                                    <p><span className='font-semibold text-lg'>Rating:</span> {toy.rating}</p>
-                                    <hr />
-                                    <p><span className='font-semibold text-lg'>Description:</span> {toy.description}</p>
-                                    <hr />
-                                </div>
-                                <div className='flex justify-end gap-2 text-xl pt-2'>
-                                    <Link className='px-3 text-white bg-orange-600 rounded-sm' to={`/updateToy/${toy._id}`}>Update</Link>
-                                    <button onClick={() => handleDeleteToy(toy._id)} className='px-2 text-white bg-red-600 rounded-sm'>
-                                        <HiTrash />
+            <div data-aos="fade-down"
+                data-aos-duration='1000'>
+                <table
+                    className="table w-full">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th className='text-orange-600 text-lg capitalize'>Toy Name</th>
+                            <th className='text-orange-600 text-lg capitalize'>Sub-category</th>
+                            <th className='text-orange-600 text-lg capitalize'>Price</th>
+                            <th className='text-orange-600 text-lg capitalize'>Quantity</th>
+                            <th className='text-orange-600 text-lg capitalize'>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            toys.map(toy => <tr key={toy._id}>
+                                <td>
+                                    <img className='w-16' src={toy.picture} alt="" />
+                                </td>
+                                <td className='font-semibold text-lime-600'>
+                                    {toy.name}
+                                </td>
+                                <td className='text-blue-700'>
+                                    {toy.subcategory}
+                                </td>
+                                <td className='text-green-600'>
+                                    {toy.price}
+                                </td>
+                                <td className='text-red-600 font-semibold'>
+                                    {toy.quantity}
+                                </td>
+                                <td className='flex gap-1 items-center'>
+                                    <Link to={`/updateToy/${toy._id}`} className='bg-[#FC7800] px-4 py-1 rounded-sm text-white'>Update</Link>
+                                    <button className='bg-red-600 p-2 rounded-sm' onClick={() => handleDeleteToy(toy._id)}>
+                                        <HiTrash className='text-md'></HiTrash>
                                     </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>)
-                }
+                                </td>
+                            </tr>)
+                        }
+                    </tbody>
+
+                </table>
             </div>
         </div>
     );

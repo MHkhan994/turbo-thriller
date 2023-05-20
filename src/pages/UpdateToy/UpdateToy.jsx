@@ -86,7 +86,7 @@ const UpdateToy = () => {
     }
 
     return (
-        <div data-aos='fade-down' data-aos-duration='800' className='my-container py-16'>
+        <div data-aos='fade-down' data-aos-duration='800' className='my-container py-8 lg:py-16'>
             <Helmet>
                 <title>Turbo Thriller-Update - {toy.name} </title>
             </Helmet>

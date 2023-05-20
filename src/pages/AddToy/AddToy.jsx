@@ -92,11 +92,12 @@ const AddToy = () => {
     }
 
     return (
-        <div className='min-h-screen my-container' data-aos='fade-down' data-aos-duration='800'>
+        <div className='my-container' data-aos='fade-down' data-aos-duration='800'>
             <Helmet>
                 <title>Turbo Thriller - Add a Toy </title>
             </Helmet>
-            <form onSubmit={handleAddToy} className="w-full p-6 pt-10 rounded-lg">
+            <h1 className="text-center font-semibold text-4xl lg:mt-16 mt-8 lg:mb-4 mb-2">Add a Toy</h1>
+            <form onSubmit={handleAddToy} className="w-full p-6 rounded-lg border mb-16">
                 <div className=' grid lg:grid-cols-2 gap-3'>
                     <div className="form-control">
                         <label className="label">

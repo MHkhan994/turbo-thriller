@@ -64,8 +64,9 @@ const Register = () => {
             <Helmet>
                 <title>Turbo Thriller - Register </title>
             </Helmet>
-            <div className="hero min-h-screen my-container">
-                <div className="grid lg:grid-cols-2 my-20 items-center gap-5 w-full">
+            <h1 className="text-center font-semibold text-4xl lg:mt-16 mt-8 lg:mb-8 mb-6">Register</h1>
+            <div className="hero my-container">
+                <div className="grid lg:grid-cols-2 mb-20 items-center gap-5 w-full">
                     <div data-aos='zoom-in' className="card w-full bg-base-100 border">
                         <form onSubmit={handleSignUp} className="w-full pb-3 p-6 pt-10  rounded-lg">
                             <div className="form-control">

@@ -23,4 +23,9 @@ body{
     @apply text-[#FF912E]
 }
 
+.dropdown ul li:active{
+    background: none !important;
+}
+
+
 

@@ -38,6 +38,12 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="mt-6 text-black menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
+                            <div className='flex ps-3 pt-2'>
+                                <img src="logo.png" className='w-10 lg:w-20' alt="" />
+                                <button>
+                                    <Link className='text-lg lg:text-3xl font-bold italic' to='/'>TurboThriller</Link>
+                                </button>
+                            </div>
                             <li><NavLink to='/'>Home</NavLink></li>
                             <li><NavLink to='/allToys'>All Toys</NavLink></li>
                             {
@@ -49,8 +55,8 @@ const Navbar = () => {
                             <li><NavLink to='/blogs'>Blogs</NavLink></li>
                         </ul>
                     </div>
-                    <img src="logo.png" className='w-10 lg:w-20' alt="" />
-                    <button>
+                    <img src="logo.png" className='w-10 lg:w-20 hidden lg:block' alt="" />
+                    <button className='hidden lg:block'>
                         <Link className='text-lg lg:text-3xl font-bold italic' to='/'>TurboThriller</Link>
                     </button>
                 </div>

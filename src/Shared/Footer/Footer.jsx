@@ -12,7 +12,11 @@ const Footer = () => {
                         <h1 className='lg:text-4xl text-2xl pe-7 font-bold italic'>Turbo Thriller</h1>
                     </div>
                     <p className='text-lg lg:text-xl font-semibold'>Play, Learn, and Explore!</p>
-                    <p className='py-7 text-md'>Discover a world of endless fun and imagination at Turbo Thriller. We're dedicated to bringing smiles to children's faces with our exciting range of toys and games.</p>
+                    <p className='py-5 text-md text-gray-400'>Discover a world of endless fun and imagination at Turbo Thriller. We're dedicated to bringing smiles to children's faces with our exciting range of toys and games.</p>
+                    <div className='pb-4'>
+                        <p>123 ABC Road, Gulshan-1</p>
+                        <p>Dhaka 1212, Bangladesh</p>
+                    </div>
                     <div className='flex gap-5'>
                         <a target='_blank' href="https://www.facebook.com/mahmudkhan.mahmudkhan.125/">
                             <FaFacebook className='text-blue-700 text-4xl' />
@@ -27,7 +31,7 @@ const Footer = () => {
                             <FaYoutube className='text-red-600 text-4xl' />
                         </a>
                     </div>
-                    <div className='pt-7'>
+                    <div className='pt-5'>
                         <h2 className='text-2xl font-semibold mb-2'>Welcome Newcommer</h2>
                         <button className='my-btn-primary'>
                             <Link to='/register'>Register</Link>
@@ -38,6 +42,7 @@ const Footer = () => {
                     <img src="footer.png" alt="" />
                 </div>
             </div>
+            <p className='text-center text-gray-500 py-4'>Copyright @ 2022 TurboThriller || All Rights Reserved</p>
         </div>
     );
 };

@@ -42,6 +42,7 @@ const AllToys = () => {
             .then(data => {
                 console.log(data);
                 setToys(data)
+                e.target.reset()
             })
     }
 
