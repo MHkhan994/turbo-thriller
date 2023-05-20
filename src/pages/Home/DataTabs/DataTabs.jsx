@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import ToyCard from '../Toys/ToyCard';
+import ToyCard from './ToyCard/ToyCard';
 
 const DataTabs = ({ toys }) => {
 
@@ -18,7 +18,7 @@ const DataTabs = ({ toys }) => {
     return (
         <div data-aos='fade-up' data-aos-duration="1000">
             <h2 className='text-4xl pt-16 text-center font-semibold'>Car Categories</h2>
-            <Tabs className='shadow-lg my-container mx-auto mt-4 mb-16 border rounded-md p-6 text-center font-semibold border-orange-500'>
+            <Tabs className='shadow-lg my-container mx-auto mt-4 mb-16 border rounded-md lg:p-6 p-3 text-center font-semibold border-orange-500'>
                 < TabList >
                     {/* main catagories */}
                     <Tab> Car Cruisers</Tab >

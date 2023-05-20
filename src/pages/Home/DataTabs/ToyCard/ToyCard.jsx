@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ToyCard = ({ toy }) => {
 
@@ -18,11 +19,9 @@ const ToyCard = ({ toy }) => {
                     <hr />
                     <p><span className='font-semibold text-lg'>Rating:</span> {toy.rating}</p>
                     <hr />
-                    <p><span className='font-semibold text-lg'>Description:</span> {toy.description}</p>
-                    <hr />
                 </div>
-                <div className='flex justify-end gap-2 text-xl pt-2'>
-
+                <div className='flex justify-center gap-2 text-xl pt-2'>
+                    <Link className='my-btn-primary' to={`/toyDetails/${toy._id}`}>Show Details</Link>
                 </div>
             </div>
         </div>

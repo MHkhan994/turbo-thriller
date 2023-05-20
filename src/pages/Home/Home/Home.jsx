@@ -5,6 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 import { Helmet } from 'react-helmet';
+import Gallery from '../Gallery/Gallery';
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
                 <title>Turbo Thriller - Homepage </title>
             </Helmet>
             <Banner></Banner>
+            <Gallery></Gallery>
             <DataTabs toys={toys}></DataTabs>
         </div>
     );

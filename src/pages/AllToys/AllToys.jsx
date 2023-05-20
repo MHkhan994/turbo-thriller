@@ -106,7 +106,7 @@ const AllToys = () => {
                                     {toy.quantity}
                                 </td>
                                 <td>
-                                    <Link to={`/toyDetails/${toy._id}`} className='bg-[#FC7800] px-2 rounded-sm text-white'>Details</Link>
+                                    <Link to={`/toyDetails/${toy._id}`} className='bg-[#FC7800] px-4 py-2 rounded-sm text-white'>Details</Link>
                                 </td>
                             </tr>)
                         }

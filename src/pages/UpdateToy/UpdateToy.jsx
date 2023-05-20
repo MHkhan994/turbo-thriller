@@ -1,12 +1,18 @@
+import Aos from 'aos';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { json, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const UpdateToy = () => {
 
     const toy = useLoaderData()
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+        Aos.init()
+    }, [])
 
 
     const handleUpdateToy = e => {
@@ -18,6 +24,34 @@ const UpdateToy = () => {
         const quantity = form.quantity.value;
         const subcategory = form.category.value;
         const description = form.description.value;
+        const rating = form.rating.value;
+
+        if (parseInt(rating) < 0 || parseInt(rating) > 5) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Rating should be a number between 4-5",
+            })
+            return
+        }
+
+        else if (isNaN(rating)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Rating should be a number",
+            })
+            return
+        }
+
+        if (quantity < 0 || price < 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "quantity can't be negative",
+            })
+            return
+        }
 
         const updateToy = {
             name: name || toy.name,
@@ -25,7 +59,8 @@ const UpdateToy = () => {
             price: price ? `$${price}` : toy.price,
             quantity: quantity || toy.quantity,
             subcategory: subcategory || toy.subcategory,
-            description: description || toy.description
+            description: description || toy.description,
+            rating: rating || toy.rating
         }
 
         fetch(`http://localhost:5000/myToys/${toy._id}`, {
@@ -51,7 +86,7 @@ const UpdateToy = () => {
     }
 
     return (
-        <div className='my-container py-16'>
+        <div data-aos='fade-down' data-aos-duration='800' className='my-container py-16'>
             <Helmet>
                 <title>Turbo Thriller-Update - {toy.name} </title>
             </Helmet>
@@ -84,6 +119,12 @@ const UpdateToy = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
+                            <span className="label-text">Rating</span>
+                        </label>
+                        <input name='rating' type="text" defaultValue={toy.rating} className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
                             <span className="label-text">Sub-category</span>
                         </label>
                         <select name='category' className='input input-bordered' defaultValue={toy.subcategory}>
@@ -103,7 +144,7 @@ const UpdateToy = () => {
                     </div>
                 </div>
                 <div className="form-control mt-6">
-                    <button className="my-btn-primary">Add Toy</button>
+                    <button className="my-btn-primary">Update Toy</button>
                 </div>
             </form>
         </div>

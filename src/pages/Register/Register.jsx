@@ -67,7 +67,7 @@ const Register = () => {
             <div className="hero min-h-screen my-container">
                 <div className="grid lg:grid-cols-2 my-20 items-center gap-5 w-full">
                     <div data-aos='zoom-in' className="card w-full bg-base-100 border">
-                        <form onSubmit={handleSignUp} className="w-full p-6 pt-10  rounded-lg">
+                        <form onSubmit={handleSignUp} className="w-full pb-3 p-6 pt-10  rounded-lg">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -94,7 +94,7 @@ const Register = () => {
                                 <input required name='photo' type="text" placeholder="photo Url" className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
-                                <button className="my-btn-primary">Register</button>
+                                <button className="my-btn-primary h-12">Register</button>
                             </div>
                         </form>
                         <div className='px-6 pb-10'>

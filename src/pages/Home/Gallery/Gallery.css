@@ -1,0 +1,11 @@
+.img-slider{
+    width: 25rem !important;
+    margin-bottom: 40px !important;
+}
+
+@media screen and (max-width: 676px) {
+    .img-slider{
+        width: 15rem !important;
+        margin-bottom: 30px !important;
+    }
+}

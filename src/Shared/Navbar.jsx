@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Providers/AuthProvider';
 import { Tooltip } from 'react-tooltip'
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -9,11 +10,23 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
 
     const handleLogout = () => {
-        logOut()
-            .then(() => {
-                navigate('/')
-            })
-            .catch(error => console.log(error))
+        Swal.fire({
+            title: 'Are you sure you want to log out?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, log out',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                    .then(() => {
+                        navigate('/')
+                    })
+                    .catch(error => console.log(error))
+            }
+        })
+
     }
 
     return (
@@ -58,7 +71,7 @@ const Navbar = () => {
                     {
                         user ? <div className='flex gap-3 items-center'>
                             <a className='my-anchor-element cursor-pointer'>
-                                <Tooltip anchorSelect=".my-anchor-element" place="top">
+                                <Tooltip className='z-10' anchorSelect=".my-anchor-element" place="left">
                                     {user.displayName}
                                 </Tooltip>
                                 <img className='w-10 h-10 rounded-full' onError={(e) => { e.target.src = 'profile.jpg' }} src={user.photoURL} alt="" />

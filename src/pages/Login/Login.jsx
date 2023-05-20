@@ -81,7 +81,7 @@ const Login = () => {
                         <img className='rounded-lg' src="login.jpg" alt="" />
                     </div>
                     <div data-aos='fade-right' data-aos-duration="700" className="card w-full bg-base-100 border">
-                        <form onSubmit={handleLogIn} className="w-full p-6 pt-10  rounded-lg">
+                        <form onSubmit={handleLogIn} className="w-full pb-3 p-6 pt-10  rounded-lg">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -96,7 +96,7 @@ const Login = () => {
                             </div>
                             <p className='text-red-600'>{error}</p>
                             <div className="form-control mt-6">
-                                <button className="my-btn-primary">Login</button>
+                                <button className="my-btn-primary h-12">Login</button>
                             </div>
                         </form>
                         <div className='px-6 pb-10'>

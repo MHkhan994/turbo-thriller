@@ -37,6 +37,15 @@ const AddToy = () => {
             return
         }
 
+        else if (isNaN(rating)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Rating should be a number",
+            })
+            return
+        }
+
         if (quantity < 0 || price < 0) {
             Swal.fire({
                 icon: 'error',
