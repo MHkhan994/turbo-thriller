@@ -13,7 +13,9 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut()
             .then(() => {
-                navigate('/')
+                setTimeout(() => {
+                    navigate('/')
+                }, 100);
                 setIsOpen(false)
             })
             .catch(error => console.log(error))
@@ -88,11 +90,11 @@ const Navbar = () => {
                             </button>
                             <div className='flex flex-col gap-2 text-lg'>
                                 <div className='flex items-center'>
-                                    <img className='w-10' src="/logo.png" alt="" />
+                                    <img className='w-14' src="/logo.png" alt="" />
                                     <Link to='/' className='text-2xl font-semibold'>Turbo Thriller</Link>
                                 </div>
                                 <NavLink className={({ isActive }) => isActive ? 'active' : 'border-b-1 border-[#0000]'} onClick={() => setIsOpen(false)} to='/'>Home</NavLink>
-                                <NavLink className={({ isActive }) => isActive ? 'active' : ''} to='/allToys'>All Toys</NavLink>
+                                <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'active' : ''} to='/allToys'>All Toys</NavLink>
                                 {
                                     user && <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'active' : ''} to='/myToys'>My Toys</NavLink>
                                 }

@@ -18,7 +18,7 @@ const MyToys = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myToys/${user.email}?order=${order}`)
+        fetch(`https://turbo-thriller-server.vercel.app/myToys/${user.email}?order=${order}`)
             .then(res => res.json())
             .then(data => setToys(data))
     }, [user, order])
