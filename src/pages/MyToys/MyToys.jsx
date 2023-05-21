@@ -1,26 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { HiTrash } from "react-icons/hi2";
-import { Link, json } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 import { Helmet } from 'react-helmet';
 
 const MyToys = () => {
+    const [toys, setToys] = useState([])
+    const [order, setOrder] = useState('')
+    const { user, loading } = useContext(AuthContext)
+
 
     useEffect(() => {
         Aos.init()
     }, [])
 
-    const [toys, setToys] = useState([])
-    const { user, loading } = useContext(AuthContext)
-
     useEffect(() => {
-        fetch(`http://localhost:5000/myToys/${user.email}`)
+        fetch(`http://localhost:5000/myToys/${user.email}?order=${order}`)
             .then(res => res.json())
             .then(data => setToys(data))
-    }, [user])
+    }, [user, order])
 
 
     const handleDeleteToy = (id) => {
@@ -34,7 +35,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/myToys/${id}`, {
+                fetch(`https://turbo-thriller-server.vercel.app/myToys/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -56,11 +57,20 @@ const MyToys = () => {
     }
 
     return (
-        <div className='min-h-[90vh] my-container py-8 lg:py-16'>
+        <div className='min-h-[90vh] my-container py-8 lg:py-16 overflow-x-auto'>
             <Helmet>
                 <title>Turbo Thriller- My Toys</title>
             </Helmet>
             <h2 className='text-center text-4xl font-semibold pb-6 '>My Toys</h2>
+            <div>
+                <div className="dropdown mb-3">
+                    <label tabIndex={0} className="btn m-1 my-btn-primary">Sort by</label>
+                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li onClick={() => { setOrder('deccending') }}><a>High to Low</a></li>
+                        <li onClick={() => { setOrder('accending') }}><a>Low to High</a></li>
+                    </ul>
+                </div>
+            </div>
             <div data-aos="fade-down"
                 data-aos-duration='1000'>
                 <table

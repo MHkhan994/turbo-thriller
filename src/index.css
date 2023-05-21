@@ -16,7 +16,7 @@ body{
 
 .my-btn-primary{
     transition: all ease .4s;
-    @apply text-white bg-[#FC7800] lg:px-7 px-4 lg:py-2 py-1 text-xl rounded-md border border-transparent hover:bg-transparent hover:border-[#FC7800] hover:text-[#FC7800] font-semibold
+    @apply text-white bg-[#FC7800] lg:px-7 px-4 py-2 text-xl rounded-md border border-transparent hover:bg-transparent hover:border-[#FC7800] hover:text-[#FC7800] font-semibold
 }
 
 .active{

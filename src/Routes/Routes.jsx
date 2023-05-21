@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/toys')
+                loader: () => fetch('https://turbo-thriller-server.vercel.app/toys')
             },
             {
                 path: '/login',
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
             {
                 path: '/allToys',
                 element: <AllToys></AllToys>,
-                loader: () => fetch('http://localhost:5000/totalToys')
+                loader: () => fetch('https://turbo-thriller-server.vercel.app/totalToys')
             },
             {
                 path: '/myToys',
@@ -45,12 +45,12 @@ export const router = createBrowserRouter([
             {
                 path: '/updateToy/:id',
                 element: <PrivateRoutes><UpdateToy></UpdateToy></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://turbo-thriller-server.vercel.app/toyDetails/${params.id}`)
             },
             {
                 path: '/toyDetails/:id',
                 element: <PrivateRoutes><ToyDetals></ToyDetals></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://turbo-thriller-server.vercel.app/toyDetails/${params.id}`)
             },
             {
                 path: '/addToy',

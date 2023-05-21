@@ -8,7 +8,7 @@ const Footer = () => {
             <div className='grid my-container lg:grid-cols-[1fr_2fr] text-white'>
                 <div className='p-5 rounded-lg'>
                     <div className='flex items-center'>
-                        <img className='w-20' src="logo.png" alt="" />
+                        <img className='w-20' src="/logo.png" alt="" />
                         <h1 className='lg:text-4xl text-2xl pe-7 font-bold italic'>Turbo Thriller</h1>
                     </div>
                     <p className='text-lg lg:text-xl font-semibold'>Play, Learn, and Explore!</p>
@@ -39,7 +39,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='grid justify-end h-full items-center'>
-                    <img src="footer.png" alt="" />
+                    <img src="/footer.png" alt="" />
                 </div>
             </div>
             <p className='text-center text-gray-500 py-4'>Copyright @ 2022 TurboThriller || All Rights Reserved</p>

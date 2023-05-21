@@ -1,95 +1,113 @@
-import React, { useContext } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../Providers/AuthProvider';
+import React, { useCallback, useContext, useState } from 'react';
+import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
+import { FaBars, FaMinus } from 'react-icons/fa';
+import { BiX } from "react-icons/bi";
 import { Tooltip } from 'react-tooltip'
-import Swal from 'sweetalert2';
+import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut, loading } = useContext(AuthContext)
+    const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
 
-    const { user, logOut } = useContext(AuthContext)
-
-    const handleLogout = () => {
-        Swal.fire({
-            title: 'Are you sure you want to log out?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, log out',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                logOut()
-                    .then(() => {
-                        navigate('/')
-                    })
-                    .catch(error => console.log(error))
-            }
-        })
-
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                navigate('/')
+                setIsOpen(false)
+            })
+            .catch(error => console.log(error))
     }
 
     return (
-        <div className='bg-[#004485]'>
-            <div className="navbar my-container text-white">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
-                        <ul tabIndex={0} className="mt-6 text-black menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
-                            <div className='flex ps-3 pt-2'>
-                                <img src="logo.png" className='w-10 lg:w-20' alt="" />
-                                <button>
-                                    <Link className='text-lg lg:text-3xl font-bold italic' to='/'>TurboThriller</Link>
-                                </button>
-                            </div>
-                            <li><NavLink to='/'>Home</NavLink></li>
-                            <li><NavLink to='/allToys'>All Toys</NavLink></li>
-                            {
-                                user && <>
-                                    <li><NavLink to='/myToys'>My Toys</NavLink></li>
-                                    <li><NavLink to='/addToy'>Add a Toy</NavLink></li>
-                                </>
-                            }
-                            <li><NavLink to='/blogs'>Blogs</NavLink></li>
-                        </ul>
+        <div className='py-2 bg-[#004485] relative'>
+            <div className='my-container relative hidden lg:block'>
+                <div className='flex justify-between text-white items-center'>
+                    <div className='flex items-center'>
+                        <img className='w-20' src="/logo.png" alt="" />
+                        <Link to='/' className='text-3xl font-bold italic'>TurboThriller</Link>
                     </div>
-                    <img src="logo.png" className='w-10 lg:w-20 hidden lg:block' alt="" />
-                    <button className='hidden lg:block'>
-                        <Link className='text-lg lg:text-3xl font-bold italic' to='/'>TurboThriller</Link>
-                    </button>
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="flex gap-4 px-2 text-lg space-x-2">
-                        <li><NavLink to='/'>Home</NavLink></li>
-                        <li><NavLink to='/allToys'>All Toys</NavLink></li>
+                    <div className='flex justify-between gap-8 text-lg items-center'>
+                        <NavLink className={({ isActive }) => isActive ? 'active' : ''} to='/'>Home</NavLink>
+                        <NavLink className={({ isActive }) => isActive ? 'active' : ''} to='/allToys'>All Toys</NavLink>
                         {
-                            user && <>
-                                <li><NavLink to='/myToys'>My Toys</NavLink></li>
-                                <li><NavLink to='/addToy'>Add a Toy</NavLink></li>
-                            </>
+                            user && <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'active' : ''} to='/myToys'>My Toys</NavLink>
                         }
-                        <li><NavLink to='/blogs'>Blogs</NavLink></li>
-                    </ul>
+                        {
+                            user && <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'active' : ''} to='/addToy'>Add a Toy</NavLink>
+                        }
+                        <NavLink className={({ isActive }) => isActive ? 'active' : ''} to='/blogs'>Blogs</NavLink>
+                    </div>
+                    <div className='flex items-center gap-5'>
+                        {
+                            user ? <div className='flex gap-3 items-center'>
+                                <a className='my-anchor-element cursor-pointer'>
+                                    <Tooltip className='z-10' anchorSelect=".my-anchor-element" place="left">
+                                        {user.displayName}
+                                    </Tooltip>
+                                    <img className='h-10 w-10 rounded-full' onError={(e) => { e.target.src = 'profile.jpg' }} src={user.photoURL} alt="" />
+                                </a>
+                                <button onClick={handleLogOut} className='my-btn-primary'>Logout</button>
+                            </div> :
+                                <Link className='my-btn-primary' to='/login'>Login</Link>
+                        }
+                    </div>
                 </div>
-                <div className="navbar-end">
-                    {
-                        user ? <div className='flex gap-3 items-center'>
-                            <a className='my-anchor-element cursor-pointer'>
-                                <Tooltip className='z-10' anchorSelect=".my-anchor-element" place="left">
-                                    {user.displayName}
-                                </Tooltip>
-                                <img className='w-10 h-10 rounded-full' onError={(e) => { e.target.src = 'profile.jpg' }} src={user.photoURL} alt="" />
-                            </a>
-                            <button onClick={handleLogout} className='my-btn-primary'>Logout</button>
-                        </div> :
-                            <Link className='my-btn-primary' to='/login'>Login</Link>
-                    }
+            </div>
+            <div className='lg:hidden container'>
+                <div className='flex justify-between px-4'>
+                    <button className='inline'
+                        onClick={() => setIsOpen(true)}
+                    >
+                        <FaBars className='w-8 h-8 text-white' />
+
+                    </button>
+                    <div className='flex items-center gap-5'>
+                        {
+                            user ? <div className='flex gap-3 items-center'>
+                                <a className='my-anchor-element cursor-pointer'>
+                                    <Tooltip className='z-10' anchorSelect=".my-anchor-element" place="right">
+                                        {user.displayName}
+                                    </Tooltip>
+                                    <img className='h-10 w-10 rounded-full' onError={(e) => { e.target.src = 'profile.jpg' }} src={user.photoURL} alt="" />
+                                </a>
+                                <button onClick={handleLogOut} className='my-btn-primary'>Logout</button>
+                            </div> :
+                                <Link className='my-btn-primary' to='/login'>Login</Link>
+                        }
+                    </div>
                 </div>
+                {isOpen && (
+                    <div className='w-2/3 absolute top-2 left-2 z-20 bg-gray-100 shadow-lg rounded-md'>
+                        <div className='text-black my-container py-5 relative'>
+                            <button className='absolute right-0'
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <BiX className='w-8 h-8 text-black text-2xl' />
+
+                            </button>
+                            <div className='flex flex-col gap-2 text-lg'>
+                                <div className='flex items-center'>
+                                    <img className='w-10' src="/logo.png" alt="" />
+                                    <Link to='/' className='text-2xl font-semibold'>Turbo Thriller</Link>
+                                </div>
+                                <NavLink className={({ isActive }) => isActive ? 'active' : 'border-b-1 border-[#0000]'} onClick={() => setIsOpen(false)} to='/'>Home</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? 'active' : ''} to='/allToys'>All Toys</NavLink>
+                                {
+                                    user && <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'active' : ''} to='/myToys'>My Toys</NavLink>
+                                }
+                                {
+                                    user && <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'active' : ''} to='/addToy'>Add a Toy</NavLink>
+                                }
+                                <NavLink className={({ isActive }) => isActive ? 'active' : 'border-b-1 border-[#0000]'} onClick={() => setIsOpen(false)} to='/blogs'>Blogs</NavLink>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
 };
+
 
 export default Navbar;

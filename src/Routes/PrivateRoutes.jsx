@@ -6,7 +6,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 
 const PrivateRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
-    const loaction = useLocation()
+    const location = useLocation()
 
     if (loading) {
         return (
@@ -15,20 +15,20 @@ const PrivateRoutes = ({ children }) => {
                     color={'#004485'}
                     loading={loading}
                     size={10}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
+                    aria-label='Loading Spinner'
+                    data-testid='loader'
                 />
             </div>
-        )
+        );
     }
+
     else if (user) {
-        return children
+        return children;
     }
+
     else {
-        Swal.fire('Please login to visit this Page')
-        return (
-            < Navigate to='/login' state={{ from: loaction }}></ Navigate>
-        )
+        Swal.fire('Please login to visit this Page');
+        return <Navigate to='/login' state={{ from: location }} />;
     }
 };
 

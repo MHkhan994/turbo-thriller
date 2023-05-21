@@ -26,7 +26,7 @@ const AllToys = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/toyLimit?page=${currentPage}`)
+        fetch(`https://turbo-thriller-server.vercel.app/toyLimit?page=${currentPage}`)
             .then(res => res.json())
             .then(data => {
                 setToys(data)
@@ -37,7 +37,7 @@ const AllToys = () => {
     const searchToy = e => {
         e.preventDefault()
         console.log(e.target);
-        fetch(`http://localhost:5000/toyName?name=${e.target.toyName.value}`)
+        fetch(`https://turbo-thriller-server.vercel.app/toyName?name=${e.target.toyName.value}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

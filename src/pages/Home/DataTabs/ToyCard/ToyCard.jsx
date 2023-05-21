@@ -9,10 +9,9 @@ const ToyCard = ({ toy }) => {
         <div className="card bg-gray-50 shadow-xl border p-3 rounded-lg">
             <img src={toy.picture} className='rounded-lg' alt="" />
             <div className="card-body p-4">
-                <h2 className="text-3xl font-semibold">{toy.name}</h2>
-                <h3 className='text-xl'>{toy.subcategory}</h3>
+                <h2 className="text-2xl font-semibold">{toy.name}</h2>
                 <hr />
-                <div className='space-y-1'>
+                <div className='space-y-1 text-gray-500'>
                     <p><span className='font-semibold text-lg'>Price:</span> {toy.price}</p>
                     <hr />
                     <p><span className='font-semibold text-lg'>Available:</span> {toy.quantity}</p>
@@ -21,7 +20,7 @@ const ToyCard = ({ toy }) => {
                     <hr />
                 </div>
                 <div className='flex justify-center gap-2 text-xl pt-2'>
-                    <Link className='my-btn-primary' to={`/toyDetails/${toy._id}`}>Show Details</Link>
+                    <Link className='my-btn-primary' to={`/toyDetails/${toy._id}`}>Details</Link>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ const Gallery = () => {
             <h1 className='text-4xl text-center pt-20 font-semibold'>Toys Gallery</h1>
             <p className='text-center text-xl py-10 pt-3 text-gray-600 italic'>Where Imagination Comes to Life: Explore the Whimsical Toy Gallery for Kids!</p>
             <Swiper
-                data-aos='zoom-in' data-aos-duration='2000'
+                data-aos='zoom-in' data-aos-duration='1300'
                 effect={'coverflow'}
                 grabCursor={true}
                 centeredSlides={true}

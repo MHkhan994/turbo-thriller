@@ -67,7 +67,7 @@ const Register = () => {
             <h1 className="text-center font-semibold text-4xl lg:mt-16 mt-8 lg:mb-8 mb-6">Register</h1>
             <div className="hero my-container">
                 <div className="grid lg:grid-cols-2 mb-20 items-center gap-5 w-full">
-                    <div data-aos='zoom-in' className="card w-full bg-base-100 border">
+                    <div data-aos='fade-down' className="card w-full bg-base-100 border">
                         <form onSubmit={handleSignUp} className="w-full pb-3 p-6 pt-10  rounded-lg">
                             <div className="form-control">
                                 <label className="label">
@@ -105,7 +105,7 @@ const Register = () => {
                             <p className='text-center pt-3 text-xl'>Already have an Account? <Link className='text-blue-500' to='/login'>Login</Link></p>
                         </div>
                     </div>
-                    <div data-aos='fade-left' className="text-center lg:text-left h-full">
+                    <div data-aos='fade-up' className="text-center lg:text-left h-full">
                         <img className='rounded-lg h-full' src="signup.jpg" alt="" />
                     </div>
                 </div>

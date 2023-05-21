@@ -12,7 +12,7 @@ const ToyDetals = () => {
     }, [])
 
     return (
-        <div className='my-container py-16'>
+        <div className='my-container py-16 px-4'>
             <Helmet>
                 <title>Turbo Thriller - {toy.name} </title>
             </Helmet>

@@ -63,7 +63,7 @@ const UpdateToy = () => {
             rating: rating || toy.rating
         }
 
-        fetch(`http://localhost:5000/myToys/${toy._id}`, {
+        fetch(`https://turbo-thriller-server.vercel.app/myToys/${toy._id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'

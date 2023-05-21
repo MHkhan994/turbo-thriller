@@ -78,10 +78,10 @@ const Login = () => {
             <h1 className="text-center font-semibold text-4xl lg:mt-16 mt-8 lg:mb-4 mb-2">Login</h1>
             <div className="hero min-h-screen my-container">
                 <div className="grid lg:grid-cols-2 mb-20 items-center gap-5 w-full">
-                    <div data-aos-duration="1000" data-aos='fade-left' className="text-center lg:text-left order-2 lg:order-1">
+                    <div data-aos-duration="1000" data-aos='fade-up' className="text-center lg:text-left order-2 lg:order-1">
                         <img className='rounded-lg' src="login.jpg" alt="" />
                     </div>
-                    <div data-aos='fade-right' data-aos-duration="700" className="card w-full bg-base-100 border">
+                    <div data-aos='fade-down' data-aos-duration="700" className="card w-full bg-base-100 border">
                         <form onSubmit={handleLogIn} className="w-full pb-3 p-6 pt-10  rounded-lg">
                             <div className="form-control">
                                 <label className="label">
