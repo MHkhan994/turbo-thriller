@@ -99,7 +99,7 @@ const MyToys = () => {
                                     {toy.subcategory}
                                 </td>
                                 <td className='text-green-600'>
-                                    {toy.price}
+                                    ${toy.price}
                                 </td>
                                 <td className='text-red-600 font-semibold'>
                                     {toy.quantity}

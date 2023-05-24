@@ -20,7 +20,7 @@ const AddToy = () => {
         const form = e.target;
         const name = form.name.value;
         const picture = form.picture.value;
-        const price = form.price.value;
+        const price = parseInt(form.price.value);
         const quantity = form.quantity.value;
         const subcategory = form.category.value;
         const description = form.description.value;
@@ -58,7 +58,7 @@ const AddToy = () => {
         const toy = {
             picture,
             name,
-            price: `$${price}`,
+            price,
             rating,
             category: '',
             subcategory,

@@ -20,7 +20,7 @@ const UpdateToy = () => {
         const form = e.target;
         const name = form.name.value;
         const picture = form.picture.value;
-        const price = form.price.value;
+        const price = parseInt(form.price.value);
         const quantity = form.quantity.value;
         const subcategory = form.category.value;
         const description = form.description.value;
@@ -56,7 +56,7 @@ const UpdateToy = () => {
         const updateToy = {
             name: name || toy.name,
             picture: picture || toy.picture,
-            price: price ? `$${price}` : toy.price,
+            price: price || toy.price,
             quantity: quantity || toy.quantity,
             subcategory: subcategory || toy.subcategory,
             description: description || toy.description,
@@ -109,7 +109,7 @@ const UpdateToy = () => {
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input name='price' type="number" defaultValue={parseInt(toy.price.split('$')[1])} className="input input-bordered" />
+                        <input name='price' type="number" defaultValue={toy.price} className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">

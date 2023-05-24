@@ -12,7 +12,7 @@ const ToyCard = ({ toy }) => {
                 <h2 className="text-2xl font-semibold">{toy.name}</h2>
                 <hr />
                 <div className='space-y-1 text-gray-500'>
-                    <p><span className='font-semibold text-lg'>Price:</span> {toy.price}</p>
+                    <p><span className='font-semibold text-lg'>Price:</span> ${toy.price}</p>
                     <hr />
                     <p><span className='font-semibold text-lg'>Available:</span> {toy.quantity}</p>
                     <hr />
